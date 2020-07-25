@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+	<!--head of the html code-->
+	<head>
+		<title>REGISTRATION FORM</title>
+		<script type="text/javascript" >
+			function method1()
+			{
+				var fName=document.getElementById("firstName").value;
+				var res=/^[a-zA-Z\s\'\-]{2,15}$/;
+				if(res.test(fName))/*if first name is valid*/
+				{
+					document.getElementById("firstNamePrompt").style.color="green";
+					document.getElementById("firstNamePrompt").innerHTML="<strong>valid</strong>";
+					return true;
+				}
+				else/*if first name is not valid*/
+				{
+					document.getElementById("firstNamePrompt").style.color="red";
+					document.getElementById("firstNamePrompt").innerHTML="<strong>enter valid name</strong>"
+					return false;
+				}
+			}
+			function method2()
+			{
+				var lName=document.getElementById("lastName").value;
+				var res=/^[a-zA-Z\s\'\-]{2,15}$/;
+				if(res.test(lName))/*if last name is valid*/
+				{
+					document.getElementById("lastNamePrompt").style.color="green";
+					document.getElementById("lastNamePrompt").innerHTML="<strong>valid</strong>";
+					return true;
+				}
+				else/*if last name is not valid*/
+				{
+					document.getElementById("lastNamePrompt").style.color="red";
+					document.getElementById("lastNamePrompt").innerHTML="<strong>enter valid name</strong>"
+					return false;
+				}
+			}
+			function method3()
+			{
+				if(email.checkValidity())/*if email is valid*/
+				{
+					document.getElementById("emailPrompt").style.color="green";
+					document.getElementById("emailPrompt").innerHTML="<strong>valid</strong>";
+					return true;
+				}
+				else/*if email is not valid*/
+				{
+					document.getElementById("emailPrompt").style.color="red";
+					document.getElementById("emailPrompt").innerHTML="<strong>enter valid email</strong>"
+					return false;
+				}
+			}
+			function method4()
+			{
+				var pass1=document.getElementById("password1").value;
+				var pass2=document.getElementById("password2").value;
+				if(pass1!=pass2)/*if password1 is not equal to password2*/
+				{
+					document.getElementById("passwordPrompt").style.color="red";
+					document.getElementById("passwordPrompt").innerHTML="<strong>password is not matched</strong>";
+					return false;
+				}
+				else if(pass1==pass2&&pass2!="")/*if password1 is equal to password2 and password2 is not equal to space*/
+				{
+					document.getElementById("passwordPrompt").style.color="green";
+					document.getElementById("passwordPrompt").innerHTML="<strong>valid</strong>";
+					return true;
+				}
+			}
+			function method5()
+			{
+				var pNumber=document.getElementById("phoneNo").value;
+				var res=/^\d{3}-\d{3}-\d{4}$/;
+				if(res.test(pNumber))/*if phone number is in the form of xxx-xxx-xxxx*/
+				{
+					document.getElementById("phoneNoPrompt").style.color="green";
+					document.getElementById("phoneNoPrompt").innerHTML="<strong>valid</strong>";
+					return true;
+				}
+				else/*if phone number is not in the form of xxx-xxx-xxxx*/
+				{
+					document.getElementById("phoneNoPrompt").style.color="red";
+					document.getElementById("phoneNoPrompt").innerHTML="<strong>enter valid phone number</strong>";
+					return false;
+				}
+			}
+			function method6()
+			{
+				if(document.getElementById("firstName").value=="" || document.getElementById("lastName").value=="" ||document.getElementById("dob").value=="" || document.getElementById("phoneNo").value=="" || document.getElementById("email").value=="" || document.getElementById("password1").value=="" ||document.getElementById("password2").value=="")
+				{
+					alert('Fill the form completely.');
+					return false;
+				}
+				else if(method1() && method2() && method3() && method4() && method5())
+				{
+					alert('You have registered successfully.');
+					return true;
+				}
+			}
+			function validatedate(){
+				var dateString=document.getElementById("dob").value;
+				var dateformat =/^(0?[1-9]|[1-2][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+				var flag=0;
+
+				// Match the date format through regular expression
+				if(dateformat.test(dateString)){
+					var operator = dateString.split('-');
+				// Extract the string into month, date and year
+					var datepart = [];
+					if (operator.length>1){
+						datepart = dateString.split('-');
+					}
+					var day = parseInt(datepart[0]);
+					var month= parseInt(datepart[1]);
+					var year = parseInt(datepart[2]);
+
+					// Create list of days of a month
+					var ListofDays = [31,28,31,30,31,30,31,31,30,31,30,31];
+					if (month==1 || (month>2 && month<=12)){
+						if (day>ListofDays[month-1]){
+							///This check is for Confirming that the date is not out of its range
+								flag=1;
+								alert("Invalid day");
+						}
+					}
+					else if (month==2){
+							var leapYear = false;
+							if ( (!(year % 4) && year % 100) || !(year % 400)) {
+								leapYear = true;
+							}
+							if (((leapYear == false) && (day>=29)) || ((leapYear==true) && (day>29))){
+								flag=1;
+								alert("Invalid day");
+							}
+					}
+					else{
+							flag=1;
+							alert("Invalid month");
+					}
+				}
+				else{
+					  flag=1;
+					  alert("Invalid date format");
+				}
+				if(flag==1){
+					document.getElementById("datePrompt").style.color="red";
+					document.getElementById("datePrompt").innerHTML="<strong>enter valid date</strong>";
+					return false;
+				}
+				else{
+					document.getElementById("datePrompt").style.color="green";
+					document.getElementById("datePrompt").innerHTML="<strong>valid</strong>";
+					return true;
+				}
+}
+		</script>
+		<style>
+			.body{
+				background-color:rgb(166, 227, 224);
+				text-align:center;
+				font-size:150%;
+			}
+			#title{
+				color:rgb(255, 104, 116);
+				text-align:center;
+				font-family:verdana;
+				font-size:200%;
+			}
+			.table{
+				width:70%;
+				margin-left:15%;
+				margin-right:15%;
+			}
+			td{
+				padding: 5px;
+				text-align:center;
+			}
+		</style>
+	</head>
+
+	<!--body of the html code-->
+	<body class="body">
+		<h1 id="title"><img src=https://www.pngitem.com/pimgs/m/391-3918613_personal-service-platform-person-icon-circle-png-transparent.png alt="face of avatar" width=50 height=50>   REGISTRATION FORM  </h1>
+		<form>
+			<table border=0 class="table"><!--it creates a table with out any border-->
+				<tr>
+					<td class="label_col">First Name:</td>
+					<td class="input_col"><input name="firstName" id="firstName" type="text" onblur="method1()" required></td><!--required specifies that an input field must be filled out before submitting the form.-->
+					<td class="feedback_col"><span id="firstNamePrompt"></span></td>
+				</tr>
+				<tr>
+					<td class="label_col">Last Name:</td>
+					<td class="input_col"><input name="lastName" id="lastName" type="text" onblur="method2()" required></td>
+					<td class="feedback_col"><span id="lastNamePrompt"></span></td>
+				</tr>
+				<tr>
+					<td class="label_col">Gender:</td>
+					<td class="input_col">
+						<input name="gender" id="gender" type="radio" checked>Male<!--element Male should be pre-selected (checked) when the page loads-->
+						<input name="gender" id="gender" type="radio">Female
+						<input name="gender" id="gender" type="radio">Other
+					</td>
+				</tr>
+				<tr>
+					<td class="label_col">Date Of Birth:</td>
+					<td class="input_col"><input name="dob" id="dob" type="text" placeholder="dd-mm-yyyy" onblur="validatedate()" required></td>
+					<td class="feedback_col"><span id="datePrompt"></span></td>
+				</tr>
+				<tr>
+					<td class="label_col">Email:</td>
+					<td class="input_col"><input name="email" id="email" type="email" onblur="method3()" placeholder="name@gmail.com" required></td>
+					<td class="feedback_col"><span id="emailPrompt"></span></td>
+				</tr>
+				<tr>
+					<td class="label_col">Password:</td>
+					<td class="input_col"><input name="password" id="password1" type="password" required></td>
+				</tr>
+				<tr>
+					<td class="label_col">Confirm Password:</td>
+					<td class="input_col"><input name="password" id="password2" type="password" required onblur="method4()"></td>
+					<td class="feedback_col"><span id="passwordPrompt"></span></td>
+				</tr>
+				<tr>
+					<td class="label_col">Phone No:</td>
+					<td class="input_col"><input name="phoneNo" id="phoneNo" type="text" placeholder="xxx-xxx-xxxx" onblur="method5()" required></td>
+					<td class="feedback_col"><span id="phoneNoPrompt"></span></td>
+				</tr>
+			</table>
+			<br><div class="last">
+			<input id="terms" type="checkbox" checked>I accept <u style="color:blue">privacy policy</u> and <u style="color:blue">terms</u><br>
+			<button onclick="method6()" style="color:red">Submit</button>
+			</div>
+		</form>
+	</body>
+</html>
